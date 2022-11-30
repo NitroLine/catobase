@@ -14,13 +14,13 @@ terraform apply -target=yandex_container_repository.catobase_api_repository
 - В выводе команды будут переменный необходимо проставить их в env
  ```
 export API_SA_ID=<ваш токен из catobase_api_sa_id>
-export ACCESS_ID=<id токен из aws_access_key_id>
-export DATABASE_ENDPOINT=<endpoint из cats-database_document_api_endpoint>
+export AWS_ACCESS_KEY_ID=<id токен из aws_access_key_id>
+export DOCUMENT_API_ENDPOINT=<endpoint из cats-database_document_api_endpoint>
 export CATOBASE_API_REPOSITORY_NAME=<id из catobase-api_repository_name>
 ```
 - Выдать права сервисному аккаунту `service_apply.sh`
 - Получить приватный ключ доступа `terraform output -raw aws_private_key`
-- Выставить его в переменную окружения `export ACCESS_KEY=<ваш токен>`
+- Выставить его в переменную окружения `export AWS_ACCESS_KEY_ID=<ваш токен>`
 - `yc container registry configure-docker`
 - `yc sls container create --name catobase-api-container --folder-id ${FOLDER_ID}`
 - Из вывода команды скопировать поле `id` и проставить в переменную окружения `export CATOBASE_API_CONTAINER_ID=<ваш id>`
