@@ -21,6 +21,8 @@ export CATOBASE_API_REPOSITORY_NAME=<id из catobase-api_repository_name>
 - Выдать права сервисному аккаунту `service_apply.sh`
 - Получить приватный ключ доступа `terraform output -raw aws_private_key`
 - Выставить его в переменную окружения `export AWS_ACCESS_KEY_ID=<ваш токен>`
+- Устонвоить зависимости для python в папке `backend`: `pip install -r requirements.txt`
+- Содать таблицы в базе данных `python migrate.py`
 - `yc container registry configure-docker`
 - `yc sls container create --name catobase-api-container --folder-id ${FOLDER_ID}`
 - Из вывода команды скопировать поле `id` и проставить в переменную окружения `export CATOBASE_API_CONTAINER_ID=<ваш id>`
