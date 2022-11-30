@@ -19,6 +19,8 @@ class CatOutputDto(BaseModel):
 
 class CreateOutputDto(BaseModel):
     created_id: str
+    replica_id: str
+    backend_version: str
 
 
 class InfoOutputDto(BaseModel):

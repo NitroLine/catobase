@@ -12,9 +12,27 @@ def create_series_table():
                                        endpoint_url=DB_ENDPOINT_URL,
                                        aws_access_key_id=AWS_ACCESS_KEY_ID,
                                        aws_secret_access_key=AWS_PRIVATE_KEY)
-    table = FakeTable()
     try:
-        table = ydb_docapi_client.create_table(
+        ydb_docapi_client.create_table(
+            TableName='docapitest/replica',  # Series — имя таблицы
+            KeySchema=[
+                {
+                    'AttributeName': 'key',
+                    'KeyType': 'HASH'  # Ключ партицирования
+                },
+            ],
+            AttributeDefinitions=[
+                {
+                    'AttributeName': 'key',
+                    'AttributeType': 'N'
+                },
+                {
+                    'AttributeName': 'value',
+                    'AttributeType': 'N'  # Строка
+                },
+            ]
+        )
+        ydb_docapi_client.create_table(
             TableName='docapitest/catnames',  # Series — имя таблицы
             KeySchema=[
                 {
@@ -43,6 +61,13 @@ def create_series_table():
         )
     except ydb_docapi_client.meta.client.exceptions.ResourceInUseException:
         pass
+    table = ydb_docapi_client.Table('docapitest/replica')
+    table.put_item(
+        Item={
+            'key': 0,
+            'value': 1,
+        }
+    )
     return table
 
 
