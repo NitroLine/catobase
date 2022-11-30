@@ -85,6 +85,7 @@ import { Plus, Search } from '@element-plus/icons-vue'
 import { ElMessageBox } from 'element-plus';
 import {version} from '../package.json'
 import CatCard from "@/components/CatCard";
+import {getAPI} from "@/params";
 
 export default {
   name: 'App',
@@ -147,14 +148,14 @@ export default {
       this.dialogVisible = true;
     },
     async getBackendData(){
-      const resp = await fetch("/api/info");
+      const resp = await fetch(`${getAPI()}/api/info`);
       const data = await resp.json();
       console.log(data)
       this.replicaVersion = data.replica_id;
       this.backendVersion = data.backend_version;
     },
     async getList(){
-      const resp = await fetch("/api/cats");
+      const resp = await fetch(`${getAPI()}/api/cats`);
       const data = await resp.json();
       console.log(data)
       this.names = data.cat_names;
@@ -187,7 +188,7 @@ export default {
       }
       this.modalError = "";
       this.modalLoading = true;
-      fetch("/api/cats", {
+      fetch(`${getAPI()}/api/cats`, {
         body: JSON.stringify({
           name: this.newName,
           author: this.newAuthor

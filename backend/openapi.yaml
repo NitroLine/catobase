@@ -38,6 +38,9 @@ paths:
             application/json:
               schema:
                 "$ref": "#/components/schemas/InfoOutputDto"
+      x-yc-apigateway-integration:
+        type: serverless_containers
+        container_id: ${CATOBASE_API_CONTAINER_ID}
   "/api/cats":
     get:
       summary: Names

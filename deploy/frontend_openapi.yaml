@@ -1,0 +1,28 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: CATOBASE FRONTEND
+x-yc-apigateway:
+  service_account_id: ${API_SA_ID}
+
+paths:
+  /:
+    get:
+      operationId: index
+      x-yc-apigateway-integration:
+        type: object_storage
+        bucket: ${CATOBASE_WEBSITE_BUCKET}
+        object: 'index.html'
+  /{file+}:
+    get:
+      operationId: website
+      parameters:
+        - name: file
+          in: path
+          required: false
+          schema:
+            type: string
+      x-yc-apigateway-integration:
+        type: object_storage
+        bucket: ${CATOBASE_WEBSITE_BUCKET}
+        object: '{file}'

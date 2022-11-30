@@ -1,8 +1,11 @@
+import os
+
 from fastapi import FastAPI, HTTPException
 import boto3
 from uuid import uuid1
 from config import DB_REGION_NAME, DB_ENDPOINT_URL, AWS_PRIVATE_KEY, AWS_ACCESS_KEY_ID, BACKEND_VERSION
 from models import InfoOutputDto, CatOutputDto, CreateOutputDto, CatName
+import uvicorn
 
 app = FastAPI()
 
@@ -69,3 +72,7 @@ async def name_add(cat: CatName):
         }
     )
     return {"created_id": name_id, "replica_id": replica_id, "backend_version": BACKEND_VERSION}
+
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
