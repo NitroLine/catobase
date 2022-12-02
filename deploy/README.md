@@ -29,7 +29,7 @@ export CATOBASE_API_REPOSITORY_NAME=<id из catobase-api_repository_name>
 - ### Перейти в папку `backend` чтобы собрать и залить новую версию API в облако скриптом `./build.sh`
 - В файле `backend\openapi.yaml` подменить `${API_SA_ID}` на соответсвующее значение переменной
 - В файле `backend\openapi.yaml` подменить все `${CATOBASE_API_CONTAINER_ID}` на соответсвующее значение переменной
-- `terraform apply -target=yandex_ydb_database_serverless.cats_database`
+- `terraform apply -target=yandex_ydb_database_serverless.catobase_api_gateway`
 - Адрес из вывода команды поставить переменную `CATOBASE_API_GATEWAY` в файле `frontend/src/params.js`
 - `terraform apply -target=yandex_storage_bucket.catobase_frontend_bucket`
 - Из вывода команды имя бакета установить переменную окружения `export CATOBASE_WEBSITE_BUCKET=<имя из переменной catobase_frontend_website_bucket>`
