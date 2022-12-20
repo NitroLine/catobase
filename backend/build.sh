@@ -12,7 +12,7 @@ yc sls container revisions deploy \
 	--cores 1 \
 	--execution-timeout 5s \
 	--concurrency 8 \
-	--environment AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID},AWS_SECRET_ACCESS_KEY=${AWS_ACCESS_KEY_ID},DOCUMENT_API_ENDPOINT=${DOCUMENT_API_ENDPOINT},APP_VERSION=$backendVersion \
+	--environment AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID},AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY},DOCUMENT_API_ENDPOINT=${DOCUMENT_API_ENDPOINT},APP_VERSION=$backendVersion \
 	--service-account-id ${API_SA_ID} \
 	--image "${CATOBASE_API_REPOSITORY_NAME}:0.0.$backendVersion";
 

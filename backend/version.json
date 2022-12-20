@@ -1,6 +1,6 @@
 {
   "type": "backend",
   "info": "Api for catobase app",
-  "version": 17,
+  "version": 22,
   "inherit": true
 }
